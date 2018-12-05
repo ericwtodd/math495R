@@ -1,10 +1,3 @@
-# image_segmentation.py
-"""Volume 1: Image Segmentation.
-Eric Todd
-Math 345 - 002
-November 1, 2018
-"""
-
 import numpy as np
 from scipy import linalg as la
 from imageio import imread
@@ -13,8 +6,6 @@ from matplotlib import pyplot as plt
 from scipy import sparse
 from scipy.sparse import linalg as spla
 
-
-# Problem 1
 def laplacian(A):
     """Computes the Laplacian matrix of the graph G that has adjacency matrix A.
 
@@ -31,7 +22,6 @@ def laplacian(A):
     return D - A
 
 
-# Problem 2
 def connectivity(A, tol=1e-8):
     """Computes the number of connected components in the graph G and its
     algebraic connectivity, given the adjacency matrix A of G.
@@ -64,7 +54,6 @@ def connectivity(A, tol=1e-8):
     return components, alg_connectivity
 
 
-# Helper function for problem 4.
 def get_neighbors(index, radius, height, width):
     """Calculates the flattened indices of the pixels that are within the given
     distance of a central pixel, and their distances from the central pixel.
@@ -97,11 +86,9 @@ def get_neighbors(index, radius, height, width):
     return (X[mask] + Y[mask] * width).astype(np.int), R[mask]
 
 
-# Problems 3-6
 class ImageSegmenter:
     """Class for storing and segmenting images."""
 
-    # Problem 3
     def __init__(self, filename):
         """Read the image file. Store its brightness values as a flat array."""
         self.file_name = filename
@@ -118,7 +105,6 @@ class ImageSegmenter:
         # Also store the flattened brightness array (1-D) as an attribute
         self.flattened = np.ravel(self.brightness)
 
-    # Problem 3
     def show_original(self):
         """Displays the original image."""
         # If the original image was color, we display normally without a specific color map
@@ -132,7 +118,6 @@ class ImageSegmenter:
             plt.axis("off")
         plt.show()
 
-    # Problem 4
     def adjacency(self, r=5., sigma_B2=.02, sigma_X2=3.):
         """Computes the Adjacency and Degree matrices for the image graph."""
         # Gets the size of the original image
@@ -162,7 +147,6 @@ class ImageSegmenter:
             # Return A as a csc matrix, and D, as an array
         return A.tocsc(), D
 
-    # Problem 5
     def cut(self, A, D):
         """Computes the boolean mask that segments the image."""
         # Compute the Laplacian matrix L, of A.
@@ -188,7 +172,6 @@ class ImageSegmenter:
         # print(mask)
         return mask
 
-    # Problem 6
     def segment(self, r=5., sigma_B=.02, sigma_X=3.):
         """Display the original image and its segments."""
         A, D = self.adjacency(r, sigma_B, sigma_X)
@@ -225,9 +208,3 @@ class ImageSegmenter:
             ax3.imshow(negative_image, cmap="gray")
             ax3.axis("off")
         plt.show()
-
-# if __name__ == '__main__':
-#     ImageSegmenter("dream_gray.png").segment()
-#     ImageSegmenter("dream.png").segment()
-#     ImageSegmenter("monument_gray.png").segment()
-#     ImageSegmenter("monument.png").segment()
