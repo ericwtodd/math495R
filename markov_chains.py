@@ -1,15 +1,7 @@
-# markov_chains.py
-"""Volume II: Markov Chains.
-Eric Todd
-Math 321 - 002
-October 31, 2018
-"""
-
 import numpy as np
 from scipy import linalg as la
 
 
-# Problem 1
 def random_chain(n):
     """Creates and returns a transition matrix for a random Markov chain with
     'n' states. This should be stored as an nxn NumPy array.
@@ -21,7 +13,6 @@ def random_chain(n):
     return transition
 
 
-# Problem 2
 def forecast(days):
     """Forecasts the weather for a certain number of days,
      With the assumption that the first day is hot.
@@ -47,7 +38,6 @@ def forecast(days):
     return predictions
 
 
-# Problem 3
 def four_state_forecast(days):
     """Run a simulation for the weather over the specified number of days,
     with mild as the starting state, using the four-state Markov chain.
@@ -89,7 +79,6 @@ def four_state_forecast(days):
     return predictions
 
 
-# Problem 4
 def steady_state(A, tol=1e-12, N=40):
     """Computes the steady state of the transition matrix A.
 
@@ -132,7 +121,6 @@ def steady_state(A, tol=1e-12, N=40):
     return xk
 
 
-# Problems 5 and 6
 class SentenceGenerator(object):
     """Markov chain creator for simulating bad English.
 
