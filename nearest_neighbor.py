@@ -1,10 +1,3 @@
-# nearest_neighbor.py
-"""Volume 2: Nearest Neighbor Search.
-Eric Todd
-Math 320 - 002
-October 11, 2018
-"""
-
 import numpy as np
 from scipy import linalg as la
 from scipy.spatial import KDTree
@@ -12,7 +5,6 @@ import scipy.stats
 from matplotlib import pyplot as plt
 
 
-# Problem 1
 def exhaustive_search(X, z):
     """Solves the nearest neighbor search problem with an exhaustive search.
 
@@ -30,7 +22,6 @@ def exhaustive_search(X, z):
     return X[np.argmin(norms_vector)], min(norms_vector)
 
 
-# Problem 2: Write a KDTNode class.
 class KDTNode:
     """A node used in a k-dimensional binary tree that has a k-dimensional vector (value)
     and pointers to its left and right children, as well as a pivot index that is determined when
@@ -55,8 +46,6 @@ class KDTNode:
             # The pivot will be changed when the node is inserted into the tree
             self.pivot = None
 
-
-# Problems 3 and 4
 class KDT:
     """A k-dimensional binary tree for solving the nearest neighbor problem.
 
@@ -92,7 +81,6 @@ class KDT:
         # Start the recursive search at the root of the tree.
         return _step(self.root)
 
-    # Problem 3
     def insert(self, data):
         """Inserts a new node containing the specified data.
 
@@ -154,7 +142,6 @@ class KDT:
             # Otherwise, we call our recursive function starting at the root to insert the data appropriately
             _insert_at(self.root)
 
-    # Problem 4
     def query(self, z):
         """Finds the value in the tree that is nearest to z.
 
@@ -241,7 +228,6 @@ class KDT:
         return "KDT(k={})\n".format(self.k) + "\n".join(strs)
 
 
-# Problem 5: Write a KNeighborsClassifier class.
 class KNeighborsClassifier:
     """A Classifier that uses the labels of the k nearest neighbors of a target to label it
     """
@@ -284,7 +270,6 @@ class KNeighborsClassifier:
         return int(prediction.mode)
 
 
-# Problem 6
 def prob6(n_neighbors, filename="mnist_subset.npz", display=False):
     """Extracts the data from the given file. Load a KNeighborsClassifier with
     the training data and the corresponding labels. Uses the classifier to
